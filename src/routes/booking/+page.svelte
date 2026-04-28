@@ -221,7 +221,7 @@
             dateLabel: formatDate(date),
             slots: reservedSlots,
             duration: duration,
-            timeLabel: timeSlots[timeIdx],
+            timeLabel: startTimeLabel, // ТУК БЕШЕ ГРЕШКАТА, ВЕЧЕ Е ОПРАВЕНО
         };
 
         loading = true;
