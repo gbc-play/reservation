@@ -199,16 +199,17 @@
 
     const sendToTelegram = async () => {
         const date = selectedDate;
-        // ДОБАВЯМЕ +1 КЪМ ИНДЕКСА, ЗА ДА ПРЕМЕСТИМ ЧАСА С 30 МИНУТИ НАПРЕД
-        const timeIdx = selectedTime !== null ? selectedTime + 1 : null;
-        
-        if (!phoneValid() || !date || timeIdx === null) return;
+        if (!phoneValid() || !date || selectedTime === null) return;
 
+        const startTimeLabel = timeSlots[selectedTime]; 
         const numSlots = Math.round(duration / 0.5);
+        
         const reservedSlots = [];
+        const startPos = timeSlots.indexOf(startTimeLabel);
         for (let i = 0; i < numSlots; i++) {
-            const slot = timeSlots[timeIdx + i];
-            if (slot) reservedSlots.push(slot);
+            if (timeSlots[startPos + i]) {
+                reservedSlots.push(timeSlots[startPos + i]);
+            }
         }
 
         const payload = {
