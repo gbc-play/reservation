@@ -61,7 +61,7 @@ const translations = {
         court_price_desc: "... за забавление",
         court_price_desc_2: "... в добра компания",
         court_price_desc_3: "... и намери приятели",
-        hour_label_short: " 2 часа",
+        hour_label_short: " 2",
         courts_title: "Игрищата",
         courts_title_2: "",
         courts_desc: "Снимки от нашите игрища",
