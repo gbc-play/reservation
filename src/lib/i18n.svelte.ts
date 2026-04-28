@@ -14,7 +14,7 @@ const translations = {
         court_price_desc: "... for fun",
         court_price_desc_2: "... in good company",
         court_price_desc_3: "... and make friends",
-        hour_label_short: " 2 hours",
+        hour_label_short: " 2",
         courts_title: "The",
         courts_title_2: "Courts",
         courts_desc: "Visuals from our courts",
