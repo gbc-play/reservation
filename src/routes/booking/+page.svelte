@@ -202,8 +202,12 @@
         const timeIdx = selectedTime;
         if (!phoneValid() || !date || timeIdx === null) return;
 
-        const numSlots = duration / 0.5;
-        const reservedSlots = timeSlots.slice(timeIdx, timeIdx + numSlots);
+        const numSlots = Math.round(duration / 0.5);
+        const reservedSlots = [];
+        for (let i = 0; i < numSlots; i++) {
+            const slot = timeSlots[timeIdx + i];
+            if (slot) reservedSlots.push(slot);
+        }
 
         const payload = {
             userName: userName,
