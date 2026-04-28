@@ -253,7 +253,7 @@
 </script>
 
 <svelte:head>
-    <title>Grebna Beach Courts - Booking</title>
+    <title>Grebna Beach Court - Booking</title>
     <meta
         name="description"
         content="Book your court at Grebna Beach with our easy-to-use reservation system. Choose your date, time, and duration, and secure your spot for an unforgettable beach volleyball experience."
@@ -358,25 +358,19 @@
                     <h2 class="text-sm font-black text-slate-800 uppercase mb-4 tracking-widest">
                         {lang.t("duration")}
                     </h2>
-                    <div class="grid grid-cols-3 gap-2">
-                        {#each [0.5, 1, 1.5, 2, 2.5, 3] as h (h)}
-                            <button
-                                onclick={() => {
-                                    duration = h;
-                                    selectedTime = null;
-                                }}
-                                class={`py-2 rounded-lg text-xs font-bold border-2 transition-all cursor-pointer ${duration === h ? "border-orange-500 bg-orange-50 text-orange-600" : "border-slate-100 text-slate-400 hover:border-slate-200"}`}
-                            >
-                                {{
-                                    "0.5": "30 " + lang.t("minute_short"),
-                                    "1": "1 " + lang.t("hour_label_short"),
-                                    "1.5": "1 " + lang.t("hour_label_short") + " 30 " + lang.t("minute_short"),
-                                    "2": "2 " + lang.t("hour_label_short"),
-                                    "2.5": "2 " + lang.t("hour_label_short") + " 30 " + lang.t("minute_short"),
-                                    "3": "3 " + lang.t("hour_label_short"),
-                                }[h]}
-                            </button>
-                        {/each}
+                    <div class="grid grid-cols-2 gap-2">
+                        <button
+                            onclick={() => { duration = 1; selectedTime = null; }}
+                            class={`py-2 rounded-lg text-xs font-bold border-2 transition-all cursor-pointer ${duration === 1 ? "border-orange-500 bg-orange-50 text-orange-600" : "border-slate-100 text-slate-400 hover:border-slate-200"}`}
+                        >
+                            1 час
+                        </button>
+                        <button
+                            onclick={() => { duration = 2; selectedTime = null; }}
+                            class={`py-2 rounded-lg text-xs font-bold border-2 transition-all cursor-pointer ${duration === 2 ? "border-orange-500 bg-orange-50 text-orange-600" : "border-slate-100 text-slate-400 hover:border-slate-200"}`}
+                        >
+                            2 часа
+                        </button>
                     </div>
                 </div>
             </div>
@@ -549,3 +543,4 @@
         {/if}
     </div>
 </main>
+
