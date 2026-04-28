@@ -199,7 +199,9 @@
 
     const sendToTelegram = async () => {
         const date = selectedDate;
-        const timeIdx = selectedTime;
+        // ДОБАВЯМЕ +1 КЪМ ИНДЕКСА, ЗА ДА ПРЕМЕСТИМ ЧАСА С 30 МИНУТИ НАПРЕД
+        const timeIdx = selectedTime !== null ? selectedTime + 1 : null;
+        
         if (!phoneValid() || !date || timeIdx === null) return;
 
         const numSlots = Math.round(duration / 0.5);
