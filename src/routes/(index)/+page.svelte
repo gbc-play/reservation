@@ -8,12 +8,12 @@
     let imgPath = $state("");
     let showMap = $state(false);
     let imgLinks = $state([
-        "https://picsum.photos/id/21/1200/800",
-        "https://picsum.photos/id/22/1200/800",
-        "https://picsum.photos/id/23/1200/800",
-        "https://picsum.photos/id/24/1200/800",
-        "https://picsum.photos/id/25/1200/800",
-        "https://picsum.photos/id/26/1200/800",
+        "/snimka1.jpg.jpg",
+        "/snimka2.jpg.jpg",
+        "/snimka3.jpg.jpg",
+        "/snimka4.jpg.jpg",
+        "/snimka5.jpg.jpg",
+        "/snimka6.jpg.jpg",
     ]);
 
     onMount(() => {
@@ -24,10 +24,10 @@
 </script>
 
 <svelte:head>
-    <title>Grebna Beach Courts</title>
+    <title>Grebna Beach Court</title>
     <meta
         name="description"
-        content="Discover Grebna Beach Courts - the premier destination for beach volleyball enthusiasts. Experience top-notch facilities, vibrant community, and unforgettable matches. Join us for an unparalleled beach volleyball experience!"
+        content="Discover Grebna Beach Court - the premier destination for beach volleyball enthusiasts. Experience top-notch facilities, vibrant community, and unforgettable matches. Join us for an unparalleled beach volleyball experience!"
     />
 </svelte:head>
 
@@ -35,7 +35,7 @@
     <nav class="absolute top-0 w-full z-50 p-6">
         <div class="max-w-7xl mx-auto flex justify-between items-center">
             <a href="/" class="text-2xl font-black tracking-tighter uppercase italic">
-                Grebna<span class="text-orange-500">Beach</span>
+                G<span class="text-orange-500">BC</span>
             </a>
             <div class="hidden md:flex space-x-8 text-sm font-bold uppercase tracking-widest">
                 <a href="#pricing" class="hover:text-orange-500 transition">
@@ -68,7 +68,7 @@
         <div class="relative z-10 text-center px-4">
             <h1 class="text-6xl md:text-9xl font-black uppercase tracking-tighter mb-4 italic">
                 Grebna <br />
-                <span class="text-orange-500 drop-shadow-2xl">Beach Courts</span>
+                <span class="text-orange-500 drop-shadow-2xl">Beach Court</span>
             </h1>
             <p class="max-w-xl mx-auto text-slate-400 text-lg md:text-xl mb-10 font-medium leading-relaxed">
                 <span>{lang.t("info")}</span>
@@ -103,7 +103,7 @@
                     {lang.t("court_price")}
                 </div>
                 <div class="text-7xl font-black mb-4">
-                    €10
+                    €20
                     <span class="text-2xl text-slate-500">/{lang.t("hour_label_short")}</span>
                 </div>
                 <ul class="text-slate-300 space-y-4 mb-8 font-medium">
@@ -174,24 +174,18 @@
             </h2>
 
             <div class="grid md:grid-cols-2 gap-8 mb-12">
-                <div class="glass p-10 rounded-3xl">
-                    <div class="text-xs font-black text-slate-500 uppercase tracking-[0.3em] mb-2">
-                        {lang.t("management")}
-                    </div>
-                    <div class="text-2xl font-bold text-white">John Grebna</div>
-                </div>
-                <div class="glass p-10 rounded-3xl border-b-4 border-orange-500">
-                    <div class="text-xs font-black text-slate-500 uppercase tracking-[0.3em] mb-2">
-                        {lang.t("phone_label")}
-                    </div>
-                    <a
-                        href="tel:+359888045441"
-                        class="text-2xl font-bold text-orange-500 hover:text-orange-400 transition-colors"
-                    >
-                        +359 123 123 123
-                    </a>
-                </div>
-            </div>
+    <div class="glass p-10 rounded-3xl border-b-4 border-green-500 flex flex-col justify-center items-center">
+        <a href="https://chat.whatsapp.com/Fxgfdx6CTOUGs92OH60LvV" target="_blank" class="bg-green-500 text-white px-8 py-4 rounded-full font-bold text-xl hover:bg-green-600 transition-all inline-block">
+            WhatsApp
+        </a>
+    </div>
+    
+    <div class="glass p-10 rounded-3xl border-b-4 border-orange-500 flex flex-col justify-center items-center">
+    <a href="tel:+359888907078" class="bg-orange-500 text-white px-8 py-4 rounded-full font-bold text-xl hover:bg-orange-600 transition-all inline-block">
+        {lang.current === 'bg' ? 'Телефон' : 'Phone'}
+    </a>
+</div>
+</div>
 
             <div class="relative w-full h-96 rounded-3xl overflow-hidden shadow-2xl border border-white/10 glass">
                 {#if !showMap}
@@ -217,7 +211,7 @@
     <footer
         class="py-12 border-t border-slate-800 text-center text-slate-600 text-sm font-medium uppercase tracking-widest"
     >
-        &copy; {new Date().getFullYear()} Grebna Beach Courts.
+        &copy; {new Date().getFullYear()} Grebna Beach Court.
         <span>{lang.t("rights_reserved")}</span>
     </footer>
 
