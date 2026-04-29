@@ -382,27 +382,24 @@
 
                         <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
                             {#each timeSlots as slot, index (slot + index)}
-                                <button
-                                    onclick={() => {
-                                        if (canBookBlock(index)) {
+                                {#if canBookBlock(index)}
+                                    <button
+                                        onclick={() => {
                                             selectedTime = index;
                                             setTimeout(() => {
                                                 document
                                                     .getElementById("summary")
                                                     ?.scrollIntoView({ behavior: "smooth" });
                                             }, 0);
-                                        }
-                                    }}
-                                    disabled={!canBookBlock(index)}
-                                    class={`py-4 px-2 rounded-xl border-2 transition-all text-center relative group ${selectedTime === index ? "border-orange-500 bg-orange-50 ring-2 ring-orange-100" : ""} ${!canBookBlock(index) ? "border-slate-50 opacity-40 cursor-not-allowed bg-slate-50 " : ""} ${canBookBlock(index) && selectedTime !== index ? "border-slate-100 hover:border-orange-200" : ""}`}
-                                >
-                                    <span class="block text-sm font-black text-slate-700">{slot}</span>
-                                    <span
-                                        class={`text-[9px] uppercase font-bold ${canBookBlock(index) ? "text-green-500" : "text-slate-400"}`}
+                                        }}
+                                        class={`py-4 px-2 rounded-xl border-2 transition-all text-center relative group ${selectedTime === index ? "border-orange-500 bg-orange-50 ring-2 ring-orange-100" : "border-slate-100 hover:border-orange-200"}`}
                                     >
-                                        {canBookBlock(index) ? lang.t("select") : lang.t("unavailable")}
-                                    </span>
-                                </button>
+                                        <span class="block text-sm font-black text-slate-700">{slot}</span>
+                                        <span class="text-[9px] uppercase font-bold text-green-500">
+                                            {lang.t("select")}
+                                        </span>
+                                    </button>
+                                {/if}
                             {/each}
                         </div>
                     {:else}
