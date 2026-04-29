@@ -1,4 +1,5 @@
 <script lang="ts">
+    import { invalidate } from "$app/navigation";
     import Loader from "$lib/components/Loader.svelte";
     import { LANG_KEY, type LanguageStateType } from "$lib/i18n.svelte";
     import { getContext } from "svelte";
@@ -27,10 +28,6 @@
     let userPhone = $state("");
 
     let toast = $state({ show: false, message: "", type: "success" });
-    let bookedDataLocal = $state<{
-        court_a: Record<string, string[]>;
-        court_b: Record<string, string[]>;
-    }>({ court_a: {}, court_b: {} });
 
     // --- Constants ---
     const timeSlots = [
@@ -67,10 +64,7 @@
     // --- Optimized Reactive Memos ---
     const bookedData = $derived(() => {
         const serverData = data.bookedDataFromServer || { court_a: {}, court_b: {} };
-        return {
-            court_a: { ...serverData.court_a, ...bookedDataLocal.court_a },
-            court_b: { ...serverData.court_b, ...bookedDataLocal.court_b },
-        };
+        return serverData;
     });
     const offDays = $derived(() => data.offDaysFromServer || { weekdays: [], specificDates: [] });
 
@@ -197,20 +191,13 @@
         year = newYear;
     };
 
-    const sendToTelegram = async () => {
+    const makeBooking = async () => {
         const date = selectedDate;
-        if (!phoneValid() || !date || selectedTime === null) return;
+        const timeIdx = selectedTime;
+        if (!phoneValid() || !date || timeIdx === null) return;
 
-        const startTimeLabel = timeSlots[selectedTime]; 
-        const numSlots = Math.round(duration / 0.5);
-        
-        const reservedSlots = [];
-        const startPos = timeSlots.indexOf(startTimeLabel);
-        for (let i = 0; i < numSlots; i++) {
-            if (timeSlots[startPos + i]) {
-                reservedSlots.push(timeSlots[startPos + i]);
-            }
-        }
+        const numSlots = duration / 0.5;
+        const reservedSlots = timeSlots.slice(timeIdx, timeIdx + numSlots);
 
         const payload = {
             userName: userName,
@@ -221,7 +208,7 @@
             dateLabel: formatDate(date),
             slots: reservedSlots,
             duration: duration,
-            timeLabel: startTimeLabel, // ТУК БЕШЕ ГРЕШКАТА, ВЕЧЕ Е ОПРАВЕНО
+            timeLabel: timeSlots[timeIdx],
         };
 
         loading = true;
@@ -232,23 +219,16 @@
                 body: JSON.stringify(payload),
             });
             const result = await response.json();
+            await invalidate("booking:data");
+            showModal = false;
+            selectedTime = null;
 
             if (!result.error) {
-                bookedDataLocal = {
-                    ...bookedDataLocal,
-                    [activeCourt]: {
-                        ...bookedDataLocal[activeCourt],
-                        [payload.date]: [...(bookedDataLocal[activeCourt][payload.date] || []), ...reservedSlots],
-                    },
-                };
-                showModal = false;
-                selectedTime = null;
                 userName = "";
                 userPhone = "";
-
                 toast = { show: true, message: lang.t("reservation_confirmed"), type: "success" };
             } else {
-                toast = { show: true, message: lang.t("reservation_failed"), type: "error" };
+                toast = { show: true, message: lang.t(result.error), type: "error" };
             }
         } catch (e) {
             toast = { show: true, message: "Error", type: "error" };
@@ -367,16 +347,22 @@
                     </h2>
                     <div class="grid grid-cols-2 gap-2">
                         <button
-                            onclick={() => { duration = 1; selectedTime = null; }}
+                            onclick={() => {
+                                duration = 1;
+                                selectedTime = null;
+                            }}
                             class={`py-2 rounded-lg text-xs font-bold border-2 transition-all cursor-pointer ${duration === 1 ? "border-orange-500 bg-orange-50 text-orange-600" : "border-slate-100 text-slate-400 hover:border-slate-200"}`}
                         >
-                            1 час
+                            1 {lang.t("hours_long")}
                         </button>
                         <button
-                            onclick={() => { duration = 2; selectedTime = null; }}
+                            onclick={() => {
+                                duration = 2;
+                                selectedTime = null;
+                            }}
                             class={`py-2 rounded-lg text-xs font-bold border-2 transition-all cursor-pointer ${duration === 2 ? "border-orange-500 bg-orange-50 text-orange-600" : "border-slate-100 text-slate-400 hover:border-slate-200"}`}
                         >
-                            2 часа
+                            2 {lang.t("hours_long")}
                         </button>
                     </div>
                 </div>
@@ -516,7 +502,7 @@
                             <span>{lang.t("cancel")}</span>
                         </button>
                         <button
-                            onclick={() => sendToTelegram()}
+                            onclick={() => makeBooking()}
                             disabled={!phoneValid() || loading || !userName}
                             class="flex-2 py-4 bg-orange-500 text-white font-black uppercase text-xs rounded-xl shadow-lg shadow-orange-200 hover:bg-orange-600 transition disabled:opacity-50 disabled:cursor-not-allowed"
                         >
@@ -550,4 +536,3 @@
         {/if}
     </div>
 </main>
-

@@ -8,7 +8,8 @@ export const POST: RequestHandler = async ({ request }) => {
     const { userName, userPhone, courtId, courtName, date, dateLabel, slots, duration, timeLabel } = payload;
 
     if (!userName || !userPhone || !courtId || !date || !slots || !duration || !courtName || !dateLabel || !timeLabel) {
-        return json({ error: "Missing required fields" }, { status: 400 });
+        console.error("newBookingPOST Error: Missing required fields: ", payload);
+        return json({ error: "reservation_failed" }, { status: 400 });
     }
 
     const client = new MongoClient(env.MONGODB_URI);
@@ -30,6 +31,17 @@ export const POST: RequestHandler = async ({ request }) => {
     try {
         await client.connect();
         const db = client.db("prod");
+
+        const existingBooking = await db.collection("Bookings").findOne({
+            courtId,
+            date,
+            slots: { $in: slots },
+        });
+
+        if (existingBooking) {
+            console.error("newBookingPOST Error: Time slot already booked: ", { courtId, date, slots });
+            return json({ error: "slot_booked" }, { status: 409 });
+        }
 
         const newBooking = await db.collection("Bookings").insertOne({
             userName,
@@ -61,15 +73,14 @@ export const POST: RequestHandler = async ({ request }) => {
             }),
         });
 
-        if (telegramRes.ok) {
-            return json({ error: null }, { status: 200 });
-        } else {
+        if (!telegramRes.ok) {
             console.error("newBookingPOST Error: Error Sending Telegram message: ", await telegramRes.text());
-            return json({ error: "Error sending Telegram message" }, { status: 500 });
         }
+
+        return json({ error: null }, { status: 200 });
     } catch (error: any) {
         console.error("newBookingPOST Error: ", error);
-        return json({ error: error?.message || "Error" }, { status: 500 });
+        return json({ error: "reservation_failed" }, { status: 500 });
     } finally {
         await client.close();
     }

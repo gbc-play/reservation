@@ -174,18 +174,29 @@
             </h2>
 
             <div class="grid md:grid-cols-2 gap-8 mb-12">
-    <div class="glass p-10 rounded-3xl border-b-4 border-green-500 flex flex-col justify-center items-center">
-        <a href="https://chat.whatsapp.com/Fxgfdx6CTOUGs92OH60LvV" target="_blank" class="bg-green-500 text-white px-8 py-4 rounded-full font-bold text-xl hover:bg-green-600 transition-all inline-block">
-            WhatsApp
-        </a>
-    </div>
-    
-    <div class="glass p-10 rounded-3xl border-b-4 border-orange-500 flex flex-col justify-center items-center">
-    <a href="tel:+359888907078" class="bg-orange-500 text-white px-8 py-4 rounded-full font-bold text-xl hover:bg-orange-600 transition-all inline-block">
-        {lang.current === 'bg' ? 'Телефон' : 'Phone'}
-    </a>
-</div>
-</div>
+                <div
+                    class="glass p-10 rounded-3xl border-b-4 border-green-500 flex flex-col justify-center items-center"
+                >
+                    <a
+                        href="https://chat.whatsapp.com/Fxgfdx6CTOUGs92OH60LvV"
+                        target="_blank"
+                        class="bg-green-500 text-white px-8 py-4 rounded-full font-bold text-xl hover:bg-green-600 transition-all inline-block"
+                    >
+                        WhatsApp
+                    </a>
+                </div>
+
+                <div
+                    class="glass p-10 rounded-3xl border-b-4 border-orange-500 flex flex-col justify-center items-center"
+                >
+                    <a
+                        href="tel:+359888907078"
+                        class="bg-orange-500 text-white px-8 py-4 rounded-full font-bold text-xl hover:bg-orange-600 transition-all inline-block"
+                    >
+                        {lang.current === "bg" ? "Телефон" : "Phone"}
+                    </a>
+                </div>
+            </div>
 
             <div class="relative w-full h-96 rounded-3xl overflow-hidden shadow-2xl border border-white/10 glass">
                 {#if !showMap}

@@ -1,7 +1,7 @@
 {
-    "name": "grebna-beach-courts-v3",
+    "name": "grebna-beach-court",
     "private": true,
-    "version": "0.0.1",
+    "version": "1.0.0",
     "type": "module",
     "scripts": {
         "dev": "vite dev",

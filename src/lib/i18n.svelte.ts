@@ -42,11 +42,11 @@ const translations = {
         confirm: "Confirm Reservation",
         select: "Select",
         unavailable: "Unavailable",
-        minute_short: "min",
         court_a: "Court 1",
         court_b: "Court 2",
         reservation_confirmed: "Your reservation is confirmed!",
         reservation_failed: "Error processing your reservation. Please try again.",
+        slot_booked: "Time slot already booked. Please select a different time.",
     },
     bg: {
         pricing: "Цени",
@@ -89,11 +89,11 @@ const translations = {
         confirm: "Потвърди резервацията",
         select: "Изберете",
         unavailable: "Неналичен",
-        minute_short: "мин",
         court_a: "Игрище 1",
         court_b: "Игрище 2",
         reservation_confirmed: "Резервацията е потвърдена!",
         reservation_failed: "Грешка при резервацията. Моля, опитайте отново.",
+        slot_booked: "Този час вече е резервиран. Моля, изберете друг час.",
     },
 };
 

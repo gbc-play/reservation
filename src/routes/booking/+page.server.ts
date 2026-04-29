@@ -2,7 +2,8 @@ import { MongoClient } from "mongodb";
 import { env } from "$env/dynamic/private";
 import { error } from "@sveltejs/kit";
 
-export const load = async () => {
+export const load = async ({ depends }) => {
+    depends("booking:data");
     const client = new MongoClient(env.MONGODB_URI);
 
     try {
@@ -35,7 +36,7 @@ export const load = async () => {
             },
         };
     } catch (err: any) {
-        console.error("Database Error:", err);
+        console.error("Load Booking Data Error: ", err);
         // SvelteKit way of handling expected errors
         throw error(500, err.message || "Could not fetch bookings");
     } finally {
