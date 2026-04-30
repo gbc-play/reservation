@@ -103,7 +103,7 @@
                     {lang.t("court_price")}
                 </div>
                 <div class="text-7xl font-black mb-4">
-                    €20
+                    €25
                     <span class="text-2xl text-slate-500">/{lang.t("hour_label_short")}</span>
                 </div>
                 <ul class="text-slate-300 space-y-4 mb-8 font-medium">
@@ -173,7 +173,7 @@
                 <span>{lang.t("questions")}</span>
             </h2>
 
-            <div class="grid md:grid-cols-2 gap-8 mb-12">
+            <div class="grid grid-cols-2 gap-8 mb-12">
                 <div
                     class="glass p-10 rounded-3xl border-b-4 border-green-500 flex flex-col justify-center items-center"
                 >
@@ -194,6 +194,30 @@
                         class="bg-orange-500 text-white px-8 py-4 rounded-full font-bold text-xl hover:bg-orange-600 transition-all inline-block"
                     >
                         {lang.current === "bg" ? "Телефон" : "Phone"}
+                    </a>
+                </div>
+
+                <div
+                    class="glass p-10 rounded-3xl border-b-4 border-pink-500 flex flex-col justify-center items-center"
+                >
+                    <a
+                        href="https://www.instagram.com/grebnabeachcourt"
+                        target="_blank"
+                        class="bg-pink-500 text-white px-8 py-4 rounded-full font-bold text-xl hover:bg-pink-600 transition-all inline-block"
+                    >
+                        Instagram
+                    </a>
+                </div>
+
+                <div
+                    class="glass p-10 rounded-3xl border-b-4 border-blue-500 flex flex-col justify-center items-center"
+                >
+                    <a
+                        href="https://www.facebook.com/grebnabeachcourt"
+                        target="_blank"
+                        class="bg-blue-500 text-white px-8 py-4 rounded-full font-bold text-xl hover:bg-blue-600 transition-all inline-block"
+                    >
+                        Facebook
                     </a>
                 </div>
             </div>
