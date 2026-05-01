@@ -1,6 +1,6 @@
 import { json } from "@sveltejs/kit";
-import { MongoClient } from "mongodb";
 import { env } from "$env/dynamic/private";
+import clientDBPromise from "$lib/server/db";
 import type { RequestHandler } from "./$types";
 
 export const POST: RequestHandler = async ({ request }) => {
@@ -12,7 +12,6 @@ export const POST: RequestHandler = async ({ request }) => {
         return json({ error: "reservation_failed" }, { status: 400 });
     }
 
-    const client = new MongoClient(env.MONGODB_URI);
     const token = env.TELEGRAM_BOT_TOKEN;
     const chatId = env.TELEGRAM_CHAT_ID;
 
@@ -29,7 +28,7 @@ export const POST: RequestHandler = async ({ request }) => {
     `;
 
     try {
-        await client.connect();
+        const client = await clientDBPromise;
         const db = client.db("prod");
 
         const existingBooking = await db.collection("Bookings").findOne({
@@ -81,7 +80,5 @@ export const POST: RequestHandler = async ({ request }) => {
     } catch (error: any) {
         console.error("newBookingPOST Error: ", error);
         return json({ error: "reservation_failed" }, { status: 500 });
-    } finally {
-        await client.close();
     }
 };
