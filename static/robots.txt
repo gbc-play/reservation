@@ -1,3 +1,10 @@
-# allow crawling everything by default
 User-agent: *
-Disallow:
+Allow: /
+
+# Block search engines from crawling your internal API
+Disallow: /api/
+Disallow: /api/cancel
+Disallow: /api/booking
+
+# Point to your sitemap (update the URL if you generate one later)
+Sitemap: https://gbcplay.net/sitemap.xml

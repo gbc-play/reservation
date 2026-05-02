@@ -8,12 +8,12 @@
     let imgPath = $state("");
     let showMap = $state(false);
     let imgLinks = $state([
-        "/snimka1.jpg.jpg",
-        "/snimka2.jpg.jpg",
-        "/snimka3.jpg.jpg",
-        "/snimka4.jpg.jpg",
-        "/snimka5.jpg.jpg",
-        "/snimka6.jpg.jpg",
+        "/courts/snimka1.jpg",
+        "/courts/snimka2.jpg",
+        "/courts/snimka3.jpg",
+        "/courts/snimka4.jpg",
+        "/courts/snimka5.jpg",
+        "/courts/snimka6.jpg",
     ]);
 
     onMount(() => {
