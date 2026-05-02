@@ -57,12 +57,12 @@
         </div>
     </nav>
 
-    <section class="relative h-dvh flex items-center justify-center overflow-hidden">
+    <section class="relative h-screen flex items-center justify-center overflow-hidden">
         <div class="absolute inset-0 z-0">
             <div
-                class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-200 h-200 bg-orange-600/20 rounded-full blur-[120px]"
+                class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-300 h-300 opacity-100"
+                style="background: radial-gradient(circle, rgba(234, 88, 12, 0.2) 0%, rgba(234, 88, 12, 0) 70%);"
             ></div>
-            <div class="absolute top-1/4 left-1/4 w-100 h-100 bg-blue-600/10 rounded-full blur-[100px]"></div>
         </div>
 
         <div class="relative z-10 text-center px-4">
