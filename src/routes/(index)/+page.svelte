@@ -173,9 +173,9 @@
                 <span>{lang.t("questions")}</span>
             </h2>
 
-            <div class="grid grid-cols-2 gap-8 mb-12">
+            <div class="grid grid-cols-1 sm:grid-cols-2 sm:gap-8 mb-12">
                 <div
-                    class="glass p-10 rounded-3xl border-b-4 border-green-500 flex flex-col justify-center items-center"
+                    class="p-10 rounded-3xl border-b-4 border-green-500 flex flex-col justify-center items-center"
                 >
                     <a
                         href="https://chat.whatsapp.com/Fxgfdx6CTOUGs92OH60LvV"
@@ -187,7 +187,7 @@
                 </div>
 
                 <div
-                    class="glass p-10 rounded-3xl border-b-4 border-orange-500 flex flex-col justify-center items-center"
+                    class="p-10 rounded-3xl border-b-4 border-orange-500 flex flex-col justify-center items-center"
                 >
                     <a
                         href="tel:+359888907078"
@@ -198,7 +198,7 @@
                 </div>
 
                 <div
-                    class="glass p-10 rounded-3xl border-b-4 border-pink-500 flex flex-col justify-center items-center"
+                    class="p-10 rounded-3xl border-b-4 border-pink-500 flex flex-col justify-center items-center"
                 >
                     <a
                         href="https://www.instagram.com/grebnabeachcourt"
@@ -210,7 +210,7 @@
                 </div>
 
                 <div
-                    class="glass p-10 rounded-3xl border-b-4 border-blue-500 flex flex-col justify-center items-center"
+                    class="p-10 rounded-3xl border-b-4 border-blue-500 flex flex-col justify-center items-center"
                 >
                     <a
                         href="https://www.facebook.com/grebnabeachcourt"
