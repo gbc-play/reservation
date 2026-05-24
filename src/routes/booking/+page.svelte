@@ -144,13 +144,25 @@
     };
 
     const canBookBlock = (startIndex: number) => {
+        const date = selectedDate;
+        if (!date) return false;
+
         const numSlotsNeeded = duration / 0.5;
         if (startIndex + numSlotsNeeded > timeSlots.length) return false;
+
+        const [hours, minutes] = timeSlots[startIndex].split(":").map(Number);
+        const slotStart = new Date(date.year, date.month, date.date, hours, minutes);
+        const twoHoursFromNow = new Date(Date.now() + 2 * 60 * 60 * 1000);
+
+        if (slotStart < twoHoursFromNow) return false;
+
         for (let i = 0; i < numSlotsNeeded; i++) {
             if (isBooked(startIndex + i)) return false;
         }
+
         return true;
     };
+    const hasBookableSlots = $derived(() => timeSlots.some((_, index) => canBookBlock(index)));
 
     const isSelected = (date: number) =>
         selectedDate?.date === date && selectedDate?.month === month && selectedDate?.year === year;
@@ -247,7 +259,7 @@
     />
 </svelte:head>
 
-<main class="bg-slate-50 p-4 md:p-8 font-sans">
+<main class="bg-slate-50 p-4 md:p-8 font-sans h-dvh">
     <div class="max-w-6xl mx-auto space-y-6">
         <nav class="flex items-center justify-between">
             <a href="/" class="text-slate-800 hover:text-orange-500">
@@ -401,6 +413,11 @@
                                     </button>
                                 {/if}
                             {/each}
+                            {#if !hasBookableSlots()}
+                                <p class="text-sm text-slate-500 col-span-full text-center">
+                                    {lang.t("no_slots")}
+                                </p>
+                            {/if}
                         </div>
                     {:else}
                         <div class="flex flex-col items-center justify-center py-20 text-center">

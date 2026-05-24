@@ -47,6 +47,7 @@ const translations = {
         reservation_confirmed: "Your reservation is confirmed!",
         reservation_failed: "Error processing your reservation. Please try again.",
         slot_booked: "Time slot already booked. Please select a different time.",
+        no_slots: "No available time slots for this court on the selected day.",
     },
     bg: {
         pricing: "Цени",
@@ -94,6 +95,7 @@ const translations = {
         reservation_confirmed: "Резервацията е потвърдена!",
         reservation_failed: "Грешка при резервацията. Моля, опитайте отново.",
         slot_booked: "Този час вече е резервиран. Моля, изберете друг час.",
+        no_slots: "Няма свободни часове за това игрище в избрания ден.",
     },
 };
 
